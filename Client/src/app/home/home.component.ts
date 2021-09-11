@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LessonsService } from './../shared/services/lessons.service';
 
 @Component({
   selector: 'app-home',
@@ -8,19 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   title = 'Your fav framework courses';
   currentLesson = null;
-
-  courseLessons = [
-    { title: 'Angular' },
-    { title: 'React' },
-    { title: 'Svelte' },
-    { title: 'React-native' },
-    { title: 'Laravel' },
-    { title: 'Symphony' },
-  ];
-
-  constructor() { }
+  courseLessons = null;
+  constructor(private lessonsService: LessonsService) { }
 
   ngOnInit(): void {
+    this.courseLessons = this.lessonsService.all()
   }
 
   selectLesson(lesson) {

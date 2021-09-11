@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoursesService } from './../shared/services/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -6,33 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-  // CHALLENGE
-  // STEP 01: Display courses using ngFor
-  // STEP 02: Add event handler to select course
-  // STEP 03: Display raw json of selected course
   selectedCourse = null;
+  courses = null
 
-  courses = [
-    {
-      id: 1,
-      title: 'Angular',
-      description: 'Js based framework',
-      percentComplete: 26,
-      favorite: true
-    },
-    {
-      id: 2,
-      title: 'React native',
-      description: 'JS based mobile framework',
-      percentComplete: 90,
-      favorite: true
-    }
-  ];
-
-  constructor() { }
+  constructor(private coursesService: CoursesService) { }
 
   ngOnInit(): void {
     this.resetSelectedCourse();
+    this.loadCourses();
   }
 
   resetSelectedCourse(){
@@ -51,14 +33,31 @@ export class CoursesComponent implements OnInit {
   }
 
   deleteCourse(courseId) {
-    console.log('COURSE DELETED!', courseId);
+    this.coursesService.delete(courseId)
+      .subscribe(result => this.loadCourses())
   }
 
-  saveCourse() {
-    console.log('SAVE SOURCE!');
+  loadCourses(){
+    this.coursesService.all()
+      .subscribe( courses => this.courses = courses )
   }
-  
-  cancel(){
+
+  saveCourse(course) {
+    if(course.id) {
+      this.coursesService.update(course)
+        .subscribe(result => this.refreshCourses())
+    } else {
+      this.coursesService.create(course)
+        .subscribe(result=> this.refreshCourses())
+    }
+  }
+
+  refreshCourses(){
+    this.resetSelectedCourse();
+    this.loadCourses();
+  }
+
+  cancel() {
     this.resetSelectedCourse();
   }
 }

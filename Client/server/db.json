@@ -2,10 +2,38 @@
   "courses": [
     {
       "id": 1,
-      "title": "Angular",
-      "description": "js/ts based web framework",
+      "title": "Angular 9 Fundamentals pok",
+      "description": "Learn the fundamentals of Angular 9",
+      "percentComplete": 26,
+      "favorite": true
+    },
+    {
+      "id": 2,
+      "title": "fasdfasdafs",
+      "description": "afsasfd",
+      "percentComplete": 36,
+      "favorite": true
+    },
+    {
+      "id": 4,
+      "title": "React ",
+      "description": "JS based mobile framework",
+      "percentComplete": 41,
+      "favorite": true
+    },
+    {
+      "id": 5,
+      "title": "fsdadfas",
+      "description": "afsdafsdfsa asddgaasgd",
       "percentComplete": 43,
       "favorite": true
+    },
+    {
+      "id": 6,
+      "title": "Maths",
+      "description": "adsflsafd",
+      "percentComplete": 50,
+      "favorite": false
     }
   ]
 }
