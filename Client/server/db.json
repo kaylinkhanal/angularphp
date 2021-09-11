@@ -1,0 +1,11 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "title": "Angular",
+      "description": "js/ts based web framework",
+      "percentComplete": 43,
+      "favorite": true
+    }
+  ]
+}
